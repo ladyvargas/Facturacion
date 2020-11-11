@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\widgets\Alert;
@@ -37,15 +38,30 @@ AppAsset::register($this);
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Inicio', 'url' => ['/site/index']],
-            ['label' => 'Facturas', 'url' => ['/site/facturas']],
-            ['label' => 'Clientes', 'url' => ['/site/clientes']],
-            ['label' => 'Ciudades', 'url' => ['/site/ciudad']],
-            ['label' => 'Proveedores', 'url' => ['/site/proveedor']],
-            ['label' => 'Artículos', 'url' => ['/site/articulos']],
-            ['label' => 'Tipo de Artículos', 'url' => ['/site/tipo-articulos']],
-        ],
+        'items' =>
+            Yii::$app->user->isGuest ? (
+            [
+                ['label' => 'Ingresar', 'url' => ['/site/login']]]
+            ) : (
+            [['label' => 'Inicio', 'url' => ['/site/index']],
+                ['label' => 'Facturas', 'url' => ['/site/facturas']],
+                ['label' => 'Clientes', 'url' => ['/site/clientes']],
+                ['label' => 'Ciudades', 'url' => ['/site/ciudad']],
+                ['label' => 'Proveedores', 'url' => ['/site/proveedor']],
+                ['label' => 'Artículos', 'url' => ['/site/articulos']],
+                ['label' => 'Tipo de Artículos', 'url' => ['/site/tipo-articulos']],
+                '<li>'
+                . Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    'Cerrar Sesión',
+                    [
+                        'class' => 'btn btn-link logout',
+                        'title' => Yii::t('app', 'Cerrar Sesión')
+                    ]
+                )
+                . Html::endForm()
+                . '</li>']
+            ),
     ]);
     NavBar::end();
     ?>
