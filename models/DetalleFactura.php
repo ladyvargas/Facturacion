@@ -48,8 +48,8 @@ class DetalleFactura extends ActiveRecord
     {
         return self::find()->where(['cod_factura' => $id])->sum('total');
     }
-    public static function findByIdCod($id,$cod)//Busca un detalle de factura en específico, por código factura y código de artículo
+    public static function findByIdCod($id)//Busca un detalle de factura en específico, por código factura y código de artículo
     {
-        return self::find()->where(['cod_factura' => $id,'cod_articulo'=>$cod])->one();
+        return self::find()->where(['codigo' => $id])->one();
     }
 }

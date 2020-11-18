@@ -136,7 +136,7 @@ class SiteController extends Controller
                 $model->Nnm_factura = $factura;
                 $model->cod_cliente = $_POST['Factura']['cod_cliente'];
                 $model->Nombre_empleado = $_POST['Factura']['Nombre_empleado'];
-                $model->Fecha_facturacion = date('d/m/Y');
+                $model->Fecha_facturacion = date('Y-m-d');
                 $model->cod_formapago = $_POST['Factura']['cod_formapago'];
                 if ($model->save()) {
                     $this->redirect(['site/venta-nueva', 'factura' => $factura]);
@@ -221,7 +221,7 @@ class SiteController extends Controller
          * afectaría a la contabilidad
          */
         try {
-            $model = DetalleFactura::findByIdCod($_GET['cod_factura'], $_GET['cod_articulo']);
+            $model = DetalleFactura::findByIdCod($_GET['id']);
             if ($model->delete())
                 return json_encode(['code' => 1]);
             else

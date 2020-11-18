@@ -4,6 +4,7 @@
 
 /* @var $content string */
 
+use app\models\Rol;
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -45,11 +46,11 @@ AppAsset::register($this);
             ) : (
             [['label' => 'Inicio', 'url' => ['/site/index']],
                 ['label' => 'Facturas', 'url' => ['/site/facturas']],
-                ['label' => 'Clientes', 'url' => ['/site/clientes']],
-                ['label' => 'Ciudades', 'url' => ['/site/ciudad']],
-                ['label' => 'Proveedores', 'url' => ['/site/proveedor']],
-                ['label' => 'Artículos', 'url' => ['/site/articulos']],
-                ['label' => 'Tipo de Artículos', 'url' => ['/site/tipo-articulos']],
+                Rol::getAdmin()?['label' => 'Clientes', 'url' => ['/site/clientes']]:'',
+                Rol::getAdmin()?['label' => 'Ciudades', 'url' => ['/site/ciudad']]:'',
+                Rol::getAdmin()?['label' => 'Proveedores', 'url' => ['/site/proveedor']]:'',
+                Rol::getAdmin()?['label' => 'Productos', 'url' => ['/site/articulos']]:'',
+                Rol::getAdmin()?['label' => 'Tipo de Artículos', 'url' => ['/site/tipo-articulos']]:'',
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
