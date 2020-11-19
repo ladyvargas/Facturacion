@@ -22,8 +22,14 @@ use app\searchs\DetalleFacturaSearch;
 use app\searchs\FacturaSearch;
 use app\searchs\ProveedorSearch;
 use app\searchs\TipoArticuloSearch;
+use kartik\mpdf\Pdf;
+use Mpdf\MpdfException;
 use phpDocumentor\Reflection\Types\This;
+use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
+use setasign\Fpdi\PdfParser\PdfParserException;
+use setasign\Fpdi\PdfParser\Type\PdfTypeException;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -57,6 +63,7 @@ class SiteController extends Controller
                     'eliminar',
                     'nuevo',
                     'venta-nueva',
+                    'imprimir',
                 ],
                 'rules' => [
                     [
@@ -78,6 +85,7 @@ class SiteController extends Controller
                             'eliminar',
                             'nuevo',
                             'venta-nueva',
+                            'imprimir',
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -274,6 +282,43 @@ class SiteController extends Controller
         $searchModel = new DetalleFacturaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $factura);
         return $this->render('ver', ['dataProvider' => $dataProvider, 'searchModel' => $searchModel, 'factura' => $factura, 'model' => $model]);
+    }
+    public function actionImprimir()
+    {
+        /*
+         * Esta acción VER sirve para tomar un número de factura específico y mostrar todos sus detalles una vez emitida
+         */
+        $factura = $_GET['factura'];
+        $model = Factura::findById($factura);
+        $searchModel = new DetalleFacturaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $factura);
+        try {
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_CORE,
+                'filename' => $factura.'.pdf',
+                'orientation' => Pdf::ORIENT_PORTRAIT,
+                'destination' => Pdf::DEST_DOWNLOAD,
+                'content' => $this->renderPartial('ver', ['dataProvider' => $dataProvider, 'searchModel' => $searchModel, 'factura' => $factura, 'model' => $model]),
+                'options' => [],
+                'methods' => []
+            ]);
+            return $pdf->render();
+        } catch (MpdfException $e) {
+            Yii::$app->session->setFlash('error', 'Hubo un error al descargar el PDF');
+            return $this->redirect(['imprimir', 'factura' => $factura]);
+        } catch (CrossReferenceException $e) {
+            Yii::$app->session->setFlash('error', 'Hubo un error al descargar el PDF');
+            return $this->redirect(['imprimir', 'factura' => $factura]);
+        } catch (PdfTypeException $e) {
+            Yii::$app->session->setFlash('error', 'Hubo un error al descargar el PDF');
+            return $this->redirect(['imprimir', 'factura' => $factura]);
+        } catch (PdfParserException $e) {
+            Yii::$app->session->setFlash('error', 'Hubo un error al descargar el PDF');
+            return $this->redirect(['imprimir', 'factura' => $factura]);
+        } catch (InvalidConfigException $e) {
+            Yii::$app->session->setFlash('error', 'Hubo un error al descargar el PDF');
+            return $this->redirect(['imprimir', 'factura' => $factura]);
+        }
     }
 
     public function actionNuevoCliente()

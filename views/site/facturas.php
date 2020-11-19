@@ -52,10 +52,14 @@ use yii\widgets\Pjax;
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header'=>'',
-                'template' => '{ver}',
+                'template' => '{ver}{imprimir}',
+                'contentOptions' => ['style' => 'width:150px; white-space:nowrap;'],
                 'buttons' => [ //Se crea un botón con la acción VER para visualizar los detalles de una factura emitida
                     'ver' => function ($url, $model) {
                         return HTML::a('Ver', ['site/ver','factura'=>$model->Nnm_factura],['class'=>'btn btn-primary']);
+                    },
+                    'imprimir' => function ($url, $model) {
+                        return HTML::a('Imprimir', ['site/imprimir','factura'=>$model->Nnm_factura],['class'=>'btn btn-success']);
                     }
                 ],
             ],
