@@ -297,7 +297,7 @@ class SiteController extends Controller
                 'mode' => Pdf::MODE_CORE,
                 'filename' => $factura.'.pdf',
                 'orientation' => Pdf::ORIENT_PORTRAIT,
-                'destination' => Pdf::DEST_DOWNLOAD,
+                'destination' => Pdf::DEST_BROWSER,
                 'content' => $this->renderPartial('ver', ['dataProvider' => $dataProvider, 'searchModel' => $searchModel, 'factura' => $factura, 'model' => $model]),
                 'options' => [],
                 'methods' => []

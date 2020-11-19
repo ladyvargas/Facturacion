@@ -59,7 +59,7 @@ use yii\widgets\Pjax;
                         return HTML::a('Ver', ['site/ver','factura'=>$model->Nnm_factura],['class'=>'btn btn-primary']);
                     },
                     'imprimir' => function ($url, $model) {
-                        return HTML::a('Imprimir', ['site/imprimir','factura'=>$model->Nnm_factura],['class'=>'btn btn-success']);
+                        return HTML::a('Imprimir', ['site/imprimir','factura'=>$model->Nnm_factura],['target' => '_blank' ,'data-pjax'=>"0",'class'=>'btn btn-success']);
                     }
                 ],
             ],
