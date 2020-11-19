@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2020 a las 21:17:46
+-- Tiempo de generación: 19-11-2020 a las 01:08:43
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.2.21
 
@@ -316,9 +316,17 @@ INSERT INTO `detalle_factura` (`codigo`, `cod_factura`, `cod_articulo`, `cantida
 (1, 'FACT-1', '76', 3, 138),
 (2, 'FACT-1', '46', 2, 130),
 (3, 'FACT-1', '46', 4, 260),
-(4, 'FACT-2', '46', 8, 520),
-(5, 'FACT-2', '68', -9, -189),
-(6, 'FACT-2', '9', -6, -180);
+(7, 'FACT-2', '36', 4, 160),
+(8, 'FACT-2', '95', 6, 528),
+(9, 'FACT-2', '5', 1, 89),
+(10, 'FACT-2', '5', 1, 89),
+(11, 'FACT-3', '62', 5, 80),
+(13, 'FACT-4', '33', 5, 75),
+(14, 'FACT-4', '46', 4, 260),
+(15, 'FACT-5', '33', 4, 60),
+(16, 'FACT-5', '46', 11, 715),
+(17, 'FACT-5', '46', 4, 260),
+(18, 'FACT-5', '98', 4, 40);
 
 -- --------------------------------------------------------
 
@@ -342,7 +350,10 @@ CREATE TABLE `factura` (
 
 INSERT INTO `factura` (`Nnm_factura`, `cod_cliente`, `Nombre_empleado`, `Fecha_facturacion`, `cod_formapago`, `total_factura`, `IVA`) VALUES
 ('FACT-1', '55359', 'Juan', '0000-00-00', 1, 591.36, 63.36),
-('FACT-2', '47131', 'Lady', '0000-00-00', 1, NULL, NULL);
+('FACT-2', '66181', 'Julio', '2020-11-08', 1, 969.92, 103.92),
+('FACT-3', '73567', 'Pablo', '2020-11-08', 2, 89.6, 9.6),
+('FACT-4', '74523', 'Lady', '2020-11-17', 2, 375.2, 40.2),
+('FACT-5', '80970', 'Pablo', '2020-11-17', 1, 1204, 129);
 
 -- --------------------------------------------------------
 
@@ -489,6 +500,26 @@ INSERT INTO `proveedor` (`No_documento`, `cod_tipo_documento`, `Nombre`, `Apelli
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `id_rol` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `id_user`, `id_rol`) VALUES
+(1, 1, 1),
+(2, 2, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipo_articulo`
 --
 
@@ -522,6 +553,29 @@ CREATE TABLE `tipo_de_documento` (
 INSERT INTO `tipo_de_documento` (`id_tipo_documento`, `Descripcion`) VALUES
 (1, 'cedula'),
 (2, 'Pasaporte');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `authKey` varchar(255) DEFAULT NULL,
+  `accessToken` varchar(255) DEFAULT NULL,
+  `active` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `authKey`, `accessToken`, `active`) VALUES
+(1, 'admin', '$argon2i$v=19$m=65536,t=4,p=1$RGhUVmZ2Q1hrcC85MjJRTg$isKeM+0zBfz6qpZb2Z7FWG9skLXpV/CbYsZ8YEstOU4', '15c174929c19b5ec81ee7bf5492ff465', '$2y$10$Awf1OzZcm8UopPgpTAYhPu2auVrD65Spfqno/7b4eKb7RtzCIGJjO', 1),
+(2, 'user', '$argon2i$v=19$m=65536,t=4,p=1$RGhUVmZ2Q1hrcC85MjJRTg$isKeM+0zBfz6qpZb2Z7FWG9skLXpV/CbYsZ8YEstOU4', '15c174929c19b5ec81ee7bf5492ff465', '$2y$10$Awf1OzZcm8UopPgpTAYhPu2auVrD65Spfqno/7b4eKb7RtzCIGJjO', 1);
 
 --
 -- Índices para tablas volcadas
@@ -571,6 +625,12 @@ ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`No_documento`);
 
 --
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `tipo_articulo`
 --
 ALTER TABLE `tipo_articulo`
@@ -583,6 +643,12 @@ ALTER TABLE `tipo_de_documento`
   ADD PRIMARY KEY (`id_tipo_documento`);
 
 --
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -590,7 +656,13 @@ ALTER TABLE `tipo_de_documento`
 -- AUTO_INCREMENT de la tabla `detalle_factura`
 --
 ALTER TABLE `detalle_factura`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
