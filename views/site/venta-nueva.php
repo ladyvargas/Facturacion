@@ -129,7 +129,7 @@ use yii\widgets\Pjax;
     <?php Pjax::end(); ?>
 </div>
 <?php
-$urlQuitar='http://localhost';
+$urlQuitar=Yii::$app->getUrlManager()->createAbsoluteUrl('');
 $script = <<< JS
 $(document).ready(function() {
     $('body').on('click','._quitar', function(e){

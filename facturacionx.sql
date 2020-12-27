@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2020 a las 01:08:43
+-- Tiempo de generación: 27-12-2020 a las 22:31:54
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.2.21
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `facturacion`
+-- Base de datos: `facturacionx`
 --
 
 -- --------------------------------------------------------
@@ -31,8 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `articulo` (
   `id_articulo` int(11) NOT NULL,
   `descripcion` varchar(100) DEFAULT NULL,
-  `precio_venta` int(11) DEFAULT NULL,
-  `precio_costo` int(11) DEFAULT NULL,
+  `precio_venta` double DEFAULT NULL,
+  `precio_costo` double DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
   `cod_tipo_articulo` int(11) DEFAULT NULL,
   `cod_proveedor` int(11) DEFAULT NULL,
@@ -44,106 +44,110 @@ CREATE TABLE `articulo` (
 --
 
 INSERT INTO `articulo` (`id_articulo`, `descripcion`, `precio_venta`, `precio_costo`, `stock`, `cod_tipo_articulo`, `cod_proveedor`, `fecha_ingreso`) VALUES
-(1, 'Lidoderm', 65, 54, 85, 88, 1625, '2021-06-29'),
-(2, 'Metformin HCl', 48, 7, 39, 51, 1679, '2021-07-11'),
-(3, 'Suboxone', 3, 7, 16, 73, 1601, '2020-07-03'),
-(4, 'Alprazolam', 3, 21, 71, 17, 1591, '2020-09-19'),
-(5, 'Meloxicam', 8, 89, 62, 79, 1597, '2020-10-15'),
-(6, 'Gabapentin', 55, 22, 98, 32, 1632, '2019-11-04'),
-(7, 'Fluticasone Propionate', 60, 47, 11, 49, 1630, '2020-05-14'),
-(8, 'Oxycodone/APAP', 18, 18, 10, 19, 1617, '2021-04-14'),
-(9, 'Alendronate Sodium', 73, 30, 35, 58, 1628, '2021-10-18'),
-(10, 'Metformin HCl', 90, 64, 92, 17, 1650, '2020-01-28'),
-(11, 'Fluticasone Propionate', 57, 49, 16, 89, 1607, '2020-02-18'),
-(12, 'Amoxicillin', 17, 39, 12, 16, 1680, '2020-12-03'),
-(13, 'Omeprazole (Rx)', 36, 8, 32, 51, 1623, '2020-03-09'),
-(14, 'Clonazepam', 77, 82, 45, 12, 1651, '2021-11-01'),
-(15, 'Carisoprodol', 72, 18, 17, 75, 1672, '2021-08-07'),
-(16, 'Ciprofloxacin HCl', 49, 86, 50, 55, 1603, '2021-07-23'),
-(17, 'Hydrocodone/APAP', 72, 90, 93, 51, 1608, '2021-10-07'),
-(18, 'Abilify', 68, 69, 79, 77, 1643, '2020-12-17'),
-(19, 'Ibuprofen (Rx)', 26, 11, 75, 84, 1612, '2020-09-08'),
-(20, 'Risperidone', 67, 37, 8, 67, 1647, '2020-08-28'),
-(21, 'Amoxicillin', 42, 20, 32, 60, 1623, '2021-04-29'),
-(22, 'Tamsulosin HCl', 46, 25, 50, 46, 1588, '2020-12-09'),
-(23, 'Potassium Chloride', 76, 51, 81, 14, 1644, '2019-11-24'),
-(24, 'Gabapentin', 9, 64, 32, 75, 1651, '2020-05-03'),
-(25, 'Sulfamethoxazole/Trimethoprim', 40, 18, 16, 91, 1678, '2021-02-09'),
-(26, 'Doxycycline Hyclate', 41, 51, 89, 34, 1600, '2020-10-04'),
-(27, 'Diovan HCT', 87, 29, 28, 82, 1665, '2021-09-06'),
-(28, 'Lisinopril', 38, 24, 82, 79, 1605, '2020-02-02'),
-(29, 'Lipitor', 87, 27, 35, 15, 1663, '2020-11-26'),
-(30, 'Furosemide', 31, 27, 51, 95, 1644, '2021-09-19'),
-(31, 'Amlodipine Besylate', 58, 7, 1, 4, 1651, '2019-12-21'),
-(32, 'Lisinopril', 81, 44, 87, 21, 1648, '2020-12-15'),
-(33, 'Alprazolam', 10, 15, 67, 28, 1671, '2021-01-09'),
-(34, 'Klor-Con M20', 27, 87, 60, 39, 1581, '2020-07-24'),
-(35, 'Paroxetine HCl', 74, 29, 47, 93, 1640, '2021-10-20'),
-(36, 'Prednisone', 79, 40, 19, 6, 1611, '2021-06-01'),
-(37, 'Metformin HCl', 40, 81, 4, 65, 1651, '2021-02-01'),
-(38, 'Diazepam', 24, 19, 28, 92, 1680, '2021-10-25'),
-(39, 'Pravastatin Sodium', 17, 59, 63, 68, 1587, '2021-04-08'),
-(40, 'Tricor', 50, 45, 74, 33, 1665, '2020-01-07'),
-(41, 'Seroquel', 8, 30, 18, 88, 1625, '2020-10-24'),
-(42, 'Flovent HFA', 14, 48, 59, 89, 1585, '2021-09-21'),
-(43, 'Simvastatin', 31, 51, 51, 4, 1634, '2019-12-05'),
-(44, 'Niaspan', 23, 6, 70, 74, 1581, '2020-07-20'),
-(45, 'Alprazolam', 81, 13, 8, 37, 1594, '2021-04-14'),
-(46, 'Alprazolam', 28, 65, 31, 27, 1611, '2019-12-23'),
-(47, 'Benicar', 4, 47, 26, 75, 1656, '2021-08-10'),
-(48, 'Levothyroxine Sodium', 53, 88, 41, 45, 1677, '2021-10-19'),
-(49, 'Lantus Solostar', 55, 28, 33, 32, 1603, '2021-06-29'),
-(50, 'Prednisone', 84, 18, 58, 78, 1582, '2020-10-20'),
-(51, 'Metformin HCl', 87, 20, 41, 19, 1642, '2021-03-16'),
-(52, 'Risperidone', 23, 21, 9, 91, 1679, '2019-11-28'),
-(53, 'Promethazine HCl', 4, 13, 9, 60, 1596, '2020-05-11'),
-(54, 'Lidoderm', 33, 14, 1, 23, 1655, '2021-03-22'),
-(55, 'Loestrin 24 Fe', 59, 27, 53, 69, 1602, '2019-12-20'),
-(56, 'Lisinopril', 33, 74, 59, 32, 1650, '2020-02-28'),
-(57, 'Namenda', 79, 58, 12, 53, 1591, '2021-04-20'),
-(58, 'Tricor', 27, 47, 27, 26, 1644, '2020-02-04'),
-(59, 'Amlodipine Besylate', 74, 61, 17, 99, 1584, '2020-07-29'),
-(60, 'Carvedilol', 65, 23, 7, 57, 1585, '2021-04-01'),
-(61, 'Singulair', 66, 52, 22, 28, 1603, '2020-12-11'),
-(62, 'Levoxyl', 37, 16, 50, 97, 1601, '2020-03-23'),
-(63, 'Lorazepam', 55, 64, 90, 70, 1602, '2021-03-04'),
-(64, 'Potassium Chloride', 60, 57, 49, 86, 1588, '2020-11-19'),
-(65, 'Glyburide', 70, 3, 15, 72, 1631, '2020-09-04'),
-(66, 'Ibuprofen (Rx)', 90, 47, 15, 5, 1591, '2020-02-26'),
-(67, 'Atenolol', 49, 52, 61, 61, 1580, '2021-08-07'),
-(68, 'Januvia', 75, 21, 80, 16, 1580, '2019-12-16'),
-(69, 'Promethazine HCl', 22, 5, 53, 49, 1664, '2021-06-08'),
-(70, 'Amlodipine Besylate', 20, 68, 48, 15, 1673, '2020-01-05'),
-(71, 'Meloxicam', 86, 68, 29, 56, 1651, '2021-10-21'),
-(72, 'Suboxone', 74, 22, 92, 4, 1581, '2021-10-30'),
-(73, 'Suboxone', 15, 89, 99, 11, 1677, '2021-08-20'),
-(74, 'Lisinopril', 18, 70, 33, 8, 1673, '2020-02-06'),
-(75, 'Atenolol', 72, 85, 25, 49, 1630, '2019-11-13'),
-(76, 'Lexapro', 46, 46, 58, 1, 1651, '2019-12-20'),
-(77, 'Hydrocodone/APAP', 86, 28, 85, 74, 1655, '2020-05-27'),
-(78, 'Amlodipine Besylate', 48, 51, 34, 70, 1639, '2021-03-23'),
-(79, 'Triamcinolone Acetonide', 4, 20, 47, 47, 1588, '2020-09-02'),
-(80, 'Suboxone', 41, 10, 80, 67, 1620, '2020-03-13'),
-(81, 'Vitamin D (Rx)', 51, 68, 20, 23, 1653, '2020-04-07'),
-(82, 'Klor-Con M20', 69, 50, 56, 13, 1582, '2021-08-07'),
-(83, 'Endocet', 29, 80, 8, 98, 1621, '2021-04-28'),
-(84, 'Fluconazole', 70, 54, 90, 21, 1629, '2021-02-13'),
-(85, 'Warfarin Sodium', 23, 8, 23, 44, 1630, '2020-04-20'),
-(86, 'Cephalexin', 27, 51, 57, 14, 1633, '2020-12-02'),
-(87, 'Lantus Solostar', 21, 88, 50, 7, 1630, '2020-01-21'),
-(88, 'Alprazolam', 44, 69, 38, 2, 1635, '2020-04-05'),
-(89, 'Clindamycin HCl', 25, 50, 50, 64, 1601, '2021-04-22'),
-(90, 'Penicillin VK', 12, 33, 19, 89, 1586, '2020-01-12'),
-(91, 'Amoxicillin Trihydrate/Potassium Clavulanate', 22, 29, 69, 73, 1580, '2019-12-10'),
-(92, 'Cymbalta', 61, 68, 10, 12, 1594, '2021-09-07'),
-(93, 'Bystolic', 51, 6, 39, 93, 1617, '2021-04-02'),
-(94, 'Lisinopril', 47, 16, 64, 47, 1657, '2019-11-27'),
-(95, 'Ibuprofen (Rx)', 59, 88, 59, 98, 1663, '2020-11-16'),
-(96, 'Lovaza', 10, 40, 39, 10, 1598, '2020-02-09'),
-(97, 'Levothyroxine Sodium', 32, 75, 88, 70, 1595, '2021-07-14'),
-(98, 'Warfarin Sodium', 54, 10, 27, 56, 1637, '2021-06-05'),
-(99, 'Atenolol', 89, 10, 57, 13, 1670, '2021-04-15'),
-(100, 'Hydrocodone/APAP', 11, 16, 65, 33, 1645, '2021-08-05');
+(1, 'Abilify', 68, 69, 70, 77, 1643, '2020-12-17'),
+(2, 'Alendronate Sodium', 73, 30, 23, 58, 1628, '2021-10-18'),
+(3, 'Alprazolam', 81, 13, -8, 37, 1594, '2021-04-14'),
+(4, 'Alprazolam', 10, 15, 57, 28, 1671, '2021-01-09'),
+(5, 'Alprazolam', 3, 21, 71, 17, 1591, '2020-09-19'),
+(6, 'Alprazolam', 28, 65, 14, 27, 1611, '2019-12-23'),
+(7, 'Alprazolam', 44, 69, 38, 2, 1635, '2020-04-05'),
+(8, 'Amlodipine Besylate', 58, 7, 1, 4, 1651, '2019-12-21'),
+(9, 'Amlodipine Besylate', 48, 51, 34, 70, 1639, '2021-03-23'),
+(10, 'Amlodipine Besylate', 74, 61, 17, 99, 1584, '2020-07-29'),
+(11, 'Amlodipine Besylate', 20, 68, 48, 15, 1673, '2020-01-05'),
+(12, 'Amoxicillin', 42, 20, 30, 60, 1623, '2021-04-29'),
+(13, 'Amoxicillin', 17, 39, 8, 16, 1680, '2020-12-03'),
+(14, 'Amoxicillin Trihydrate/Potassium Clavulanate', 22, 29, 69, 73, 1580, '2019-12-10'),
+(15, 'apronax', 15, 10, 100, 2, 801, '2020-12-18'),
+(16, 'Atenolol', 89, 10, 57, 13, 1670, '2021-04-15'),
+(17, 'Atenolol', 49, 52, 61, 61, 1580, '2021-08-07'),
+(18, 'Atenolol', 72, 85, 25, 49, 1630, '2019-11-13'),
+(19, 'Benicar', 4, 47, 26, 75, 1656, '2021-08-10'),
+(20, 'Bystolic', 51, 6, 39, 93, 1617, '2021-04-02'),
+(21, 'Carisoprodol', 72, 18, 17, 75, 1672, '2021-08-07'),
+(22, 'Carvedilol', 65, 23, 7, 57, 1585, '2021-04-01'),
+(23, 'Cephalexin', 27, 51, 57, 14, 1633, '2020-12-02'),
+(24, 'Ciprofloxacin HCl', 49, 86, 50, 55, 1603, '2021-07-23'),
+(25, 'Clindamycin HCl', 25, 50, 43, 64, 1601, '2021-04-22'),
+(26, 'Clonazepam', 77, 82, 45, 12, 1651, '2021-11-01'),
+(27, 'complejo', 0.15, 0.2, 1, 1, 1764, '2020-12-16'),
+(28, 'complejo b', 30, 25, 1, 0, 1764, '2020-12-15'),
+(29, 'Cymbalta', 61, 68, 10, 12, 1594, '2021-09-07'),
+(30, 'Diazepam', 24, 19, 28, 92, 1680, '2021-10-25'),
+(31, 'Diovan HCT', 87, 29, 28, 82, 1665, '2021-09-06'),
+(32, 'Doxycycline Hyclate', 41, 51, 89, 34, 1600, '2020-10-04'),
+(33, 'Endocet', 29, 80, 5, 98, 1621, '2021-04-28'),
+(34, 'Flovent HFA', 14, 48, 59, 89, 1585, '2021-09-21'),
+(35, 'Fluconazole', 70, 54, 87, 21, 1629, '2021-02-13'),
+(36, 'Fluticasone Propionate', 60, 47, 11, 49, 1630, '2020-05-14'),
+(37, 'Fluticasone Propionate', 57, 49, 16, 89, 1607, '2020-02-18'),
+(38, 'Furosemide', 31, 27, 51, 95, 1644, '2021-09-19'),
+(39, 'Gabapentin', 55, 22, 98, 32, 1632, '2019-11-04'),
+(40, 'Gabapentin', 9, 64, 32, 75, 1651, '2020-05-03'),
+(41, 'Glyburide', 70, 3, 15, 72, 1631, '2020-09-04'),
+(42, 'Hydrocodone/APAP', 11, 16, 56, 33, 1645, '2021-08-05'),
+(43, 'Hydrocodone/APAP', 86, 28, 85, 74, 1655, '2020-05-27'),
+(44, 'Hydrocodone/APAP', 72, 90, 93, 51, 1608, '2021-10-07'),
+(45, 'Ibuprofen (Rx)', 26, 11, 72, 84, 1612, '2020-09-08'),
+(46, 'Ibuprofen (Rx)', 90, 47, 15, 5, 1591, '2020-02-26'),
+(47, 'Ibuprofen (Rx)', 59, 88, 59, 98, 1663, '2020-11-16'),
+(48, 'Januvia', 75, 21, 80, 16, 1580, '2019-12-16'),
+(49, 'Klor-Con M20', 69, 50, 56, 13, 1582, '2021-08-07'),
+(50, 'Klor-Con M20', 27, 87, 60, 39, 1581, '2020-07-24'),
+(51, 'Lantus Solostar', 55, 28, 33, 32, 1603, '2021-06-29'),
+(52, 'Lantus Solostar', 21, 88, 50, 7, 1630, '2020-01-21'),
+(53, 'Levothyroxine Sodium', 32, 75, 88, 70, 1595, '2021-07-14'),
+(54, 'Levothyroxine Sodium', 53, 88, 41, 45, 1677, '2021-10-19'),
+(55, 'Levoxyl', 37, 16, 50, 97, 1601, '2020-03-23'),
+(56, 'Lexapro', 46, 46, 58, 1, 1651, '2019-12-20'),
+(57, 'Lidoderm', 33, 14, 1, 23, 1655, '2021-03-22'),
+(58, 'Lidoderm', 65, 54, 85, 88, 1625, '2021-06-29'),
+(59, 'Lipitor', 87, 27, 35, 15, 1663, '2020-11-26'),
+(60, 'Lisinopril', 47, 16, 64, 47, 1657, '2019-11-27'),
+(61, 'Lisinopril', 38, 24, 82, 79, 1605, '2020-02-02'),
+(62, 'Lisinopril', 81, 44, 87, 21, 1648, '2020-12-15'),
+(63, 'Lisinopril', 18, 70, 33, 8, 1673, '2020-02-06'),
+(64, 'Lisinopril', 33, 74, 59, 32, 1650, '2020-02-28'),
+(65, 'Loestrin 24 Fe', 59, 27, 53, 69, 1602, '2019-12-20'),
+(66, 'Lorazepam', 55, 64, 90, 70, 1602, '2021-03-04'),
+(67, 'Lovaza', 10, 40, 35, 10, 1598, '2020-02-09'),
+(68, 'Meloxicam', 86, 68, 29, 56, 1651, '2021-10-21'),
+(69, 'Meloxicam', 8, 89, 62, 79, 1597, '2020-10-15'),
+(70, 'Metformin HCl', 48, 7, 39, 51, 1679, '2021-07-11'),
+(71, 'Metformin HCl', 87, 20, 41, 19, 1642, '2021-03-16'),
+(72, 'Metformin HCl', 90, 64, 92, 17, 1650, '2020-01-28'),
+(73, 'Metformin HCl', 40, 81, 4, 65, 1651, '2021-02-01'),
+(74, 'Namenda', 79, 58, 12, 53, 1591, '2021-04-20'),
+(75, 'Niaspan', 23, 6, 70, 74, 1581, '2020-07-20'),
+(76, 'Omeprazole (Rx)', 36, 8, 32, 51, 1623, '2020-03-09'),
+(77, 'Oxycodone/APAP', 18, 18, 10, 19, 1617, '2021-04-14'),
+(78, 'Paroxetine HCl', 74, 29, 47, 93, 1640, '2021-10-20'),
+(79, 'Penicillin VK', 12, 33, 19, 89, 1586, '2020-01-12'),
+(80, 'Potassium Chloride', 76, 51, 81, 14, 1644, '2019-11-24'),
+(81, 'Potassium Chloride', 60, 57, 49, 86, 1588, '2020-11-19'),
+(82, 'Pravastatin Sodium', 17, 59, 63, 68, 1587, '2021-04-08'),
+(83, 'Prednisone', 84, 18, 58, 78, 1582, '2020-10-20'),
+(84, 'Prednisone', 79, 40, 19, 6, 1611, '2021-06-01'),
+(85, 'producto de prueba 5', 25.56, 34.89, 243, 0, 68843, '2020-12-14'),
+(86, 'Promethazine HCl', 22, 5, 53, 49, 1664, '2021-06-08'),
+(87, 'Promethazine HCl', 4, 13, 9, 60, 1596, '2020-05-11'),
+(88, 'Risperidone', 23, 21, 9, 91, 1679, '2019-11-28'),
+(89, 'Risperidone', 67, 37, 8, 67, 1647, '2020-08-28'),
+(90, 'Seroquel', 8, 30, 18, 88, 1625, '2020-10-24'),
+(91, 'Simvastatin', 31, 51, 51, 4, 1634, '2019-12-05'),
+(92, 'Singulair', 66, 52, 22, 28, 1603, '2020-12-11'),
+(93, 'Suboxone', 3, 7, 16, 73, 1601, '2020-07-03'),
+(94, 'Suboxone', 41, 10, 80, 67, 1620, '2020-03-13'),
+(95, 'Suboxone', 74, 22, 92, 4, 1581, '2021-10-30'),
+(96, 'Suboxone', 15, 89, 99, 11, 1677, '2021-08-20'),
+(97, 'Sulfamethoxazole/Trimethoprim', 40, 18, 16, 91, 1678, '2021-02-09'),
+(98, 'Tamsulosin HCl', 46, 25, 50, 46, 1588, '2020-12-09'),
+(99, 'Triamcinolone Acetonide', 4, 20, 47, 47, 1588, '2020-09-02'),
+(100, 'Tricor', 50, 45, 74, 33, 1665, '2020-01-07'),
+(101, 'Tricor', 27, 47, 27, 26, 1644, '2020-02-04'),
+(102, 'Vitamin D (Rx)', 51, 68, 20, 23, 1653, '2020-04-07'),
+(103, 'Warfarin Sodium', 23, 8, 23, 44, 1630, '2020-04-20'),
+(104, 'Warfarin Sodium', 54, 10, 27, 56, 1637, '2021-06-05');
 
 -- --------------------------------------------------------
 
@@ -170,7 +174,12 @@ INSERT INTO `ciudad` (`Codigo_ciudad`, `Nombre_ciudad`) VALUES
 (7, 'Guayaquil'),
 (8, 'El oro'),
 (9, 'Ibarra'),
-(10, 'Orellana');
+(10, 'Orellana'),
+(11, 'Imbabura'),
+(12, 'Imbabura'),
+(13, 'Napo'),
+(14, 'Napo'),
+(15, 'tena');
 
 -- --------------------------------------------------------
 
@@ -194,11 +203,16 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`Documento`, `cod_tipo_documento`, `Nombres`, `Apellidos`, `Direccion`, `cod_ciudad`, `Telefono`) VALUES
 ('01335', 2, 'Gabriel', 'Good', '654-3810 Nunc Ctra.', 6, '1-517-330-6979'),
+('01336', 1, 'Martha Eliza', 'Suares Cordova', 'Av.pano', 15, '0981864008'),
+('01337', 1, 'Willian Alexander', 'Ruiz Mendoza', 'Av.chillos', 3, '0981864001'),
+('01338', 2, 'Luis mateo', 'López Ruiz', 'Av.llomas', 6, '0981864006'),
+('01659', 1, 'Julio cesar', 'bueno ruiz', 'av.rocafuerte', 3, '0981864005'),
 ('02333', 1, 'Hyatt', 'Glover', 'Apdo.:422-7094 Ut Ctra.', 9, '1-569-216-9205'),
 ('02423', 1, 'Dolan', 'Martinez', 'Apdo.:776-6527 Duis Avda.', 7, '1-529-259-8075'),
 ('04332', 1, 'Quentin', 'Ford', 'Apdo.:153-9193 Nunc Carretera', 3, '1-529-426-9274'),
 ('05883', 1, 'Neil', 'Cooley', 'Apdo.:699-7494 Eleifend, Calle', 10, '1-841-824-4142'),
 ('05921', 2, 'Cameron', 'Mckee', 'Apdo.:801-2516 Sed Avda.', 7, '1-845-838-7868'),
+('1', 1, 'marisol', 'tunay', 'tena', 3, '066885444'),
 ('10047', 2, 'Travis', 'Hodges', '422-4596 Purus Av.', 4, '1-862-250-0062'),
 ('10453', 2, 'Melvin', 'Washington', 'Apdo.:708-7434 Ullamcorper. C/', 9, '1-775-839-4119'),
 ('11243', 2, 'Josiah', 'Moran', 'Apdo.:243-2220 Aliquet. C/', 9, '1-154-194-3043'),
@@ -209,6 +223,7 @@ INSERT INTO `cliente` (`Documento`, `cod_tipo_documento`, `Nombres`, `Apellidos`
 ('19068', 1, 'Aristotle', 'Petty', '6458 Varius. Calle', 4, '1-741-762-1567'),
 ('20626', 1, 'Kuame', 'Nieves', 'Apdo.:244-6541 Praesent Carretera', 1, '1-590-663-0363'),
 ('21490', 2, 'Oren', 'Hudson', 'Apdo.:767-6225 Placerat. ', 1, '1-358-283-4233'),
+('222', 1, 'juan', 'mendez', 'tena', 1, '098885525'),
 ('22649', 1, 'Timon', 'Rose', 'Apdo.:837-8940 Libero. ', 6, '1-854-869-4394'),
 ('22701', 2, 'Slade', 'Jones', 'Apdo.:105-3063 Duis Avenida', 8, '1-374-748-9477'),
 ('25109', 2, 'Paki', 'Gibson', '750-6655 Congue ', 3, '1-673-370-5945'),
@@ -233,6 +248,7 @@ INSERT INTO `cliente` (`Documento`, `cod_tipo_documento`, `Nombres`, `Apellidos`
 ('38881', 2, 'Marsden', 'Munoz', '9929 Dictum Calle', 10, '1-191-966-9902'),
 ('38929', 1, 'Perry', 'Leblanc', 'Apdo.:428-7138 Pretium Av.', 9, '1-104-733-3628'),
 ('41654', 1, 'Jonah', 'Kaufman', 'Apdo.:760-4034 Nisl Av.', 1, '1-758-975-8232'),
+('43657976', 1, 'Karla ', 'Vazquez', 'Centro', 3, '098754532'),
 ('46147', 1, 'Lane', 'Kirby', '195-1054 Ante. C/', 3, '1-959-658-4373'),
 ('46176', 1, 'Ferdinand', 'Serrano', '5206 Sapien. Av.', 4, '1-183-870-3206'),
 ('47131', 1, 'Russell', 'Buckner', 'Apartado núm.: 666, 2946 Et Ctra.', 9, '1-860-410-4634'),
@@ -313,20 +329,47 @@ CREATE TABLE `detalle_factura` (
 --
 
 INSERT INTO `detalle_factura` (`codigo`, `cod_factura`, `cod_articulo`, `cantidad`, `total`) VALUES
-(1, 'FACT-1', '76', 3, 138),
 (2, 'FACT-1', '46', 2, 130),
 (3, 'FACT-1', '46', 4, 260),
-(7, 'FACT-2', '36', 4, 160),
-(8, 'FACT-2', '95', 6, 528),
-(9, 'FACT-2', '5', 1, 89),
-(10, 'FACT-2', '5', 1, 89),
-(11, 'FACT-3', '62', 5, 80),
-(13, 'FACT-4', '33', 5, 75),
-(14, 'FACT-4', '46', 4, 260),
-(15, 'FACT-5', '33', 4, 60),
-(16, 'FACT-5', '46', 11, 715),
-(17, 'FACT-5', '46', 4, 260),
-(18, 'FACT-5', '98', 4, 40);
+(4, 'FACT-1', '76', 3, 138),
+(5, 'FACT-10', '9', 4, 120),
+(6, 'FACT-12', '100', 9, 144),
+(7, 'FACT-12', '33', 4, 60),
+(8, 'FACT-12', '9', 3, 90),
+(9, 'FACT-13', '21', 2, 40),
+(10, 'FACT-14', '117', 2, 50),
+(11, 'FACT-15', '117', 2, 50),
+(12, 'FACT-15', '19', 3, 33),
+(13, 'FACT-16', '96', 2, 80),
+(14, 'FACT-17', '96', 2, 80),
+(15, 'FACT-18', '117', 3, 75),
+(16, 'FACT-18', '96', 2, 80),
+(17, 'FACT-19', '45', 8, 104),
+(18, 'FACT-2', '36', 4, 160),
+(19, 'FACT-2', '5', 1, 89),
+(20, 'FACT-2', '95', 6, 528),
+(21, 'FACT-20', '33', 6, 90),
+(22, 'FACT-20', '84', 3, 162),
+(23, 'FACT-21', '18', 1, 69),
+(24, 'FACT-21', '9', 5, 150),
+(25, 'FACT-22', '117', 90, 2250),
+(26, 'FACT-23', '117', 3, 75),
+(27, 'FACT-24', '119', 99, 19),
+(28, 'FACT-25', '117', 2, 50),
+(29, 'FACT-26', '46', 5, 325),
+(30, 'FACT-26', '83', 3, 240),
+(31, 'FACT-3', '62', 5, 80),
+(32, 'FACT-4', '33', 5, 75),
+(33, 'FACT-4', '46', 4, 260),
+(34, 'FACT-5', '33', 4, 60),
+(35, 'FACT-5', '46', 4, 260),
+(36, 'FACT-5', '46', 11, 715),
+(37, 'FACT-5', '98', 4, 40),
+(38, 'FACT-6', '89', 7, 350),
+(39, 'FACT-6', '9', 4, 120),
+(40, 'FACT-7', '12', 2, 78),
+(41, 'FACT-8', '46', 6, 390),
+(42, 'FACT-9', '18', 4, 276);
 
 -- --------------------------------------------------------
 
@@ -349,11 +392,32 @@ CREATE TABLE `factura` (
 --
 
 INSERT INTO `factura` (`Nnm_factura`, `cod_cliente`, `Nombre_empleado`, `Fecha_facturacion`, `cod_formapago`, `total_factura`, `IVA`) VALUES
-('FACT-1', '55359', 'Juan', '0000-00-00', 1, 591.36, 63.36),
+('FACT-1', '55359', 'Juan', NULL, 1, 591.36, 63.36),
+('FACT-10', '55359', 'Julio', '2020-12-11', 1, NULL, NULL),
+('FACT-11', '80970', 'Prueba', '2020-12-14', 2, NULL, NULL),
+('FACT-12', '55359', 'Julio', '2020-12-14', 2, 329.28, 35.28),
+('FACT-13', '70012', 'Alfonso', '2020-12-15', 1, 44.8, 4.8),
+('FACT-14', '74523', 'Alfonso', '2020-12-15', 2, 56, 6),
+('FACT-15', '55359', 'javier', '2020-12-15', 2, 92.96, 9.96),
+('FACT-16', '82509', 'Beto', '2020-12-16', 1, NULL, NULL),
+('FACT-17', '82509', 'Beto', '2020-12-16', 1, 89.6, 9.6),
+('FACT-18', '55359', 'Jhon', '2020-12-16', 1, 173.6, 18.6),
+('FACT-19', '1', 'ffff', '2020-12-16', 1, 232.96, 24.96),
 ('FACT-2', '66181', 'Julio', '2020-11-08', 1, 969.92, 103.92),
+('FACT-20', '47131', 'Javier', '2020-12-16', 2, 282.24, 30.24),
+('FACT-21', '1', 'ffff', '2020-12-16', 1, 245.28, 26.28),
+('FACT-22', '26651', 'ffff', '2020-12-16', 1, 2520, 270),
+('FACT-23', '1', 'ffff', '2020-12-16', 1, NULL, NULL),
+('FACT-24', '1', 'ffff', '2020-12-16', 1, 21.28, 2.28),
+('FACT-25', '70012', 'pepe', '2020-12-18', 1, 56, 6),
+('FACT-26', '96324', 'Pablo', '2020-12-27', 2, 632.8, 67.8),
 ('FACT-3', '73567', 'Pablo', '2020-11-08', 2, 89.6, 9.6),
 ('FACT-4', '74523', 'Lady', '2020-11-17', 2, 375.2, 40.2),
-('FACT-5', '80970', 'Pablo', '2020-11-17', 1, 1204, 129);
+('FACT-5', '80970', 'Pablo', '2020-11-17', 1, 1204, 129),
+('FACT-6', '47131', 'Javier', '2020-12-09', 2, 526.4, 56.4),
+('FACT-7', '51123', 'Pablo', '2020-12-10', 1, 174.72, 18.72),
+('FACT-8', '47131', 'palma', '2020-12-11', 2, 873.6, 93.6),
+('FACT-9', '01335', 'Pablo', '2020-12-11', 2, 618.24, 66.24);
 
 -- --------------------------------------------------------
 
@@ -397,13 +461,17 @@ CREATE TABLE `proveedor` (
 
 INSERT INTO `proveedor` (`No_documento`, `cod_tipo_documento`, `Nombre`, `Apellido`, `Nombre_comercial`, `direccion`, `cod_ciudad`, `Telefono`) VALUES
 ('00580', 2, 'Quentin', 'Pope', 'Thane Puckett', '5885 Elit, Avda.', 10, '1-566-154-7989'),
+('00801', 1, 'lui ', 'kan', 'farmadoc', 'av.tayu', 4, '0984990236'),
+('01764', 1, 'marcos ', 'valverde', 'medicamentos', 'av.lomas', 3, '0987541987'),
 ('02528', 1, 'Abbot', 'Vazquez', 'Abdul Lynch', 'Apartado núm.: 103, 2815 Urna. Carretera', 10, '1-908-738-0773'),
+('03005', 1, 'Luis', 'Montoya', 'Mateo hidalgo', 'Av.yunsos', 2, '0981864003'),
 ('03009', 1, 'Palmer', 'Villarreal', 'Brett Morales', '651-7610 Pellentesque Avenida', 2, '1-993-193-3089'),
 ('04018', 2, 'Amery', 'Bryan', 'Audrey Best', 'Apartado núm.: 331, 431 Ipsum C/', 3, '1-750-276-6918'),
 ('05824', 2, 'Finn', 'Luna', 'Zenia Knox', 'Apdo.:743-362 Pulvinar Avda.', 10, '1-945-726-0688'),
 ('06814', 2, 'Marshall', 'Summers', 'Desirae Campbell', '334-542 Dictum Carretera', 9, '1-276-927-9640'),
 ('07779', 1, 'Ross', 'Diaz', 'Sade Reese', '4701 Donec Av.', 2, '1-212-150-2837'),
 ('07920', 1, 'Richard', 'Rosa', 'Bree Chase', '483-6385 Leo. C.', 8, '1-205-346-9845'),
+('0825', 1, 'Carlos ', 'Guaman', 'Difarmacy', 'av.yu', 12, '0954514781'),
 ('09709', 1, 'Guy', 'Reid', 'Colby Hughes', '331-2545 Neque Ctra.', 4, '1-543-678-7494'),
 ('10789', 1, 'Brody', 'Walsh', 'Lucian Chen', 'Apdo.:341-1961 Nam Avda.', 2, '1-131-171-5726'),
 ('12244', 2, 'Kadeem', 'Gregory', 'William Roman', 'Apartado núm.: 686, 9307 Nulla ', 4, '1-463-687-3929'),
@@ -421,6 +489,7 @@ INSERT INTO `proveedor` (`No_documento`, `cod_tipo_documento`, `Nombre`, `Apelli
 ('27191', 2, 'Kevin', 'Rowe', 'Pascale Rojas', '4043 Eget ', 8, '1-945-645-0925'),
 ('28097', 2, 'Kirk', 'Frye', 'Kitra Dunlap', '1209 Ut Carretera', 3, '1-582-292-8470'),
 ('28829', 1, 'Uriel', 'Sutton', 'Mark Stark', '7678 Aliquet Avenida', 6, '1-518-850-5878'),
+('3', 1, 'medica', 'soot', 'jjj', 'quito', 3, '055889888'),
 ('30327', 2, 'Jonas', 'Larson', 'Gavin Moran', '523-1642 Pede. Calle', 9, '1-399-614-4425'),
 ('31608', 2, 'Joshua', 'Dawson', 'Kane Adams', 'Apartado núm.: 962, 7367 Amet, Avenida', 10, '1-765-849-0369'),
 ('32274', 2, 'Marsden', 'Bowman', 'Heather Cash', 'Apdo.:854-2081 Ornare, ', 4, '1-666-343-2907'),
@@ -447,6 +516,7 @@ INSERT INTO `proveedor` (`No_documento`, `cod_tipo_documento`, `Nombre`, `Apelli
 ('51317', 1, 'Hop', 'Kemp', 'Indira May', 'Apdo.:773-5506 Fusce Av.', 6, '1-110-530-0052'),
 ('53134', 2, 'Hashim', 'Carter', 'Haviva Saunders', '3808 Lectus Calle', 5, '1-798-729-3401'),
 ('55101', 1, 'Valentine', 'Gamble', 'Paula Landry', '431-2239 Non C.', 5, '1-578-156-5336'),
+('555', 1, 'alexander', 'lopez', 'medicamnets', 'quito', 16, '022655555'),
 ('58063', 2, 'Todd', 'Wagner', 'Jana Kent', '1926 Erat. Ctra.', 3, '1-972-834-3848'),
 ('59838', 1, 'Cedric', 'Moran', 'Cara Marsh', '9088 Cras Carretera', 5, '1-460-471-1883'),
 ('60122', 1, 'Stephen', 'Vincent', 'Kitra May', 'Apartado núm.: 922, 8478 Massa Avenida', 6, '1-764-316-1960'),
@@ -533,7 +603,11 @@ CREATE TABLE `tipo_articulo` (
 --
 
 INSERT INTO `tipo_articulo` (`id_tipoarticulo`, `descripcion_articulo`) VALUES
-(0, 'paracetamol');
+(1, 'calmantes'),
+(2, 'paracetamol'),
+(3, 'remedios'),
+(4, 'solidas'),
+(5, 'vitaminas');
 
 -- --------------------------------------------------------
 
@@ -585,7 +659,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `authKey`, `accessToken`, `ac
 -- Indices de la tabla `articulo`
 --
 ALTER TABLE `articulo`
-  ADD PRIMARY KEY (`id_articulo`);
+  ADD PRIMARY KEY (`id_articulo`),
+  ADD UNIQUE KEY `descripcion` (`descripcion`,`precio_costo`,`precio_venta`,`stock`,`cod_tipo_articulo`,`cod_proveedor`,`fecha_ingreso`);
 
 --
 -- Indices de la tabla `ciudad`
@@ -604,7 +679,7 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `detalle_factura`
   ADD PRIMARY KEY (`codigo`),
-  ADD KEY `detalle_facturas_factura_Nnm_factura_fk` (`cod_factura`);
+  ADD UNIQUE KEY `cod_factura` (`cod_factura`,`cod_articulo`,`cantidad`,`total`);
 
 --
 -- Indices de la tabla `factura`
@@ -634,7 +709,8 @@ ALTER TABLE `roles`
 -- Indices de la tabla `tipo_articulo`
 --
 ALTER TABLE `tipo_articulo`
-  ADD PRIMARY KEY (`id_tipoarticulo`);
+  ADD PRIMARY KEY (`id_tipoarticulo`),
+  ADD UNIQUE KEY `descripcion_articulo` (`descripcion_articulo`);
 
 --
 -- Indices de la tabla `tipo_de_documento`
@@ -653,16 +729,34 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `articulo`
+--
+ALTER TABLE `articulo`
+  MODIFY `id_articulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+
+--
+-- AUTO_INCREMENT de la tabla `ciudad`
+--
+ALTER TABLE `ciudad`
+  MODIFY `Codigo_ciudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT de la tabla `detalle_factura`
 --
 ALTER TABLE `detalle_factura`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_articulo`
+--
+ALTER TABLE `tipo_articulo`
+  MODIFY `id_tipoarticulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

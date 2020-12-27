@@ -96,6 +96,10 @@ a.desc:after {
     border: none;
 }
 
+.navbar-brand{
+    padding: 2px 15px;
+}
+
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;
