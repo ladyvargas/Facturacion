@@ -34,7 +34,7 @@ class ArticuloSearch extends Articulo
 
     public function search($params)
     {
-        $query = Articulo::find();
+        $query = Articulo::find()->orderBy(['id_articulo'=>SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

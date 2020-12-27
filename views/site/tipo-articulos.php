@@ -15,7 +15,7 @@ use yii\widgets\Pjax;
 <div class="site-index">
     <h1>Tipo de Artículos</h1>
     <p>
-        <?= HTML::button('Registrar Cliente', ArrayHelper::merge(['value'=>Url::to(['nuevo-tipo-articulo'])], ['id'=>'modalButton', 'class'=>'btn btn-success'])); ?>
+        <?= HTML::button('Registrar Tipo de Artículos', ArrayHelper::merge(['value'=>Url::to(['nuevo-tipo-articulo'])], ['id'=>'modalButton', 'class'=>'btn btn-success'])); ?>
     </p>
     <?php
     /*

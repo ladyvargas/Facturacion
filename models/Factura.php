@@ -51,6 +51,6 @@ class Factura extends ActiveRecord
     }
     public static function getNuevaFactura()//Busca la última factura ingresada para continuar con la venta y agregar su respectivo DETALLE FACTURA
     {
-        return self::find()->select('Nnm_factura')->orderBy(['Nnm_factura' => SORT_DESC])->one();
+        return self::find()->select('Nnm_factura, length(Nnm_factura) AS length_num_fact')->orderBy(['length_num_fact' => SORT_DESC, 'Nnm_factura' => SORT_DESC])->one();
     }
 }

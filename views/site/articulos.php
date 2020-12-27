@@ -37,6 +37,26 @@ use yii\widgets\Pjax;
             'options' => [
                 'class' => 'table-responsive',
             ],
+	    'columns' => [
+		'id_articulo',
+                'descripcion',
+		[
+		    'attribute' => 'precio_venta',
+		    'value' => function ($data) {
+			return '$ '.number_format($data['precio_venta'], 2, '.', '');
+		    }
+		],
+                [
+                    'attribute' => 'precio_costo',
+                    'value' => function ($data) {
+                        return '$ '.number_format($data['precio_costo'], 2, '.', '');
+                    }
+                ],
+                'stock',
+                'cod_tipo_articulo',
+                'cod_proveedor',
+                'fecha_ingreso'
+	    ]
     ]); ?>
     <?php Pjax::end(); ?>
 </div>
