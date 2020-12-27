@@ -4,7 +4,7 @@ use yii\web\Request;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
-$baseUrl = str_replace('/web', '', (new Request)->getBaseUrl());
+//$baseUrl = str_replace('/web', '', (new Request)->getBaseUrl());
 
 $config = [
     'id' => 'facturacion',
@@ -21,7 +21,7 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'widFs1jqh8i9y4sZVuWYp82u1RcLypHK',
-            'baseUrl' => $baseUrl,
+  //          'baseUrl' => $baseUrl,
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
