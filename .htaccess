@@ -1,11 +1,8 @@
 php_flag output_buffering On
 php_flag display_errors off
-Options +FollowSymLinks
-IndexIgnore /
+Options -Indexes
 RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . index.php
+RewriteRule ^(.*)$ web/$1 [L]
 <IfModule mod_headers.c>
 Header always set Content-Security-Policy: upgrade-insecure-requests
 Header set Access-Control-Max-Age 1728000

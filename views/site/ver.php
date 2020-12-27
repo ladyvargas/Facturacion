@@ -16,9 +16,9 @@ if(!isset($searchModel))
  * gridview con búsqueda
  */
 ?>
-
     <div class="site-index">
-        <h1>Detalle</h1>
+        <p style = "font-size: 55px;"><img src="<?=Yii::$app->getUrlManager()->createAbsoluteUrl('img/farmacia.jpeg')?>" style="display:inline; vertical-align: top; height:86px;" align="left">
+        Detalle</p>
         <?php
         echo DetailView::widget([//detailview con el detalle de la factura emitida
             'model' => $model,

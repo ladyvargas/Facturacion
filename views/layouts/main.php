@@ -31,7 +31,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => '<img src=' . Yii::$app->getUrlManager()->createAbsoluteUrl('img/farmacia.jpeg') . ' style="display:inline; vertical-align: top; height:46px;"> ',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
