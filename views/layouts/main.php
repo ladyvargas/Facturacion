@@ -51,6 +51,7 @@ AppAsset::register($this);
                 Rol::getAdmin()?['label' => 'Proveedores', 'url' => ['/site/proveedor']]:'',
                 Rol::getAdmin()?['label' => 'Productos', 'url' => ['/site/articulos']]:'',
                 Rol::getAdmin()?['label' => 'Tipo de Artículos', 'url' => ['/site/tipo-articulos']]:'',
+                Rol::getAdmin()?['label' => 'Usuarios', 'url' => ['/site/usuario']]:'',
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(

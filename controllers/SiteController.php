@@ -15,6 +15,7 @@ use app\models\Factura;
 use app\models\LoginForm;
 use app\models\Proveedor;
 use app\models\TipoArticulo;
+use app\models\User;
 use app\searchs\ArticuloSearch;
 use app\searchs\CiudadSearch;
 use app\searchs\ClienteSearch;
@@ -22,6 +23,7 @@ use app\searchs\DetalleFacturaSearch;
 use app\searchs\FacturaSearch;
 use app\searchs\ProveedorSearch;
 use app\searchs\TipoArticuloSearch;
+use app\searchs\UsuarioSearch;
 use kartik\mpdf\Pdf;
 use Mpdf\MpdfException;
 use phpDocumentor\Reflection\Types\This;
@@ -64,6 +66,8 @@ class SiteController extends Controller
                     'nuevo',
                     'venta-nueva',
                     'imprimir',
+                    'usuario',
+                    'nuevo-usuario',
                 ],
                 'rules' => [
                     [
@@ -86,6 +90,8 @@ class SiteController extends Controller
                             'nuevo',
                             'venta-nueva',
                             'imprimir',
+                            'usuario',
+                            'nuevo-usuario',
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -192,6 +198,13 @@ class SiteController extends Controller
         return $this->render('venta-nueva', ['dataProvider' => $dataProvider, 'searchModel' => $searchModel, 'factura' => $factura, 'model' => $model]);
     }
 
+    public function actionUsuario()
+    {
+        $searchModel = new UsuarioSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('usuario', ['dataProvider' => $dataProvider, 'searchModel' => $searchModel]);
+    }
+
     public function actionNuevo()
     {
         /*
@@ -211,7 +224,7 @@ class SiteController extends Controller
             $x = Articulo::findById($_POST['DetalleFactura']['cod_articulo']);
             $model->cod_factura = $_POST['DetalleFactura']['cod_factura'];
             $model->cod_articulo = $_POST['DetalleFactura']['cod_articulo'];
-            $model->total = $model->cantidad * $x['precio_costo'];
+            $model->total = $model->cantidad * $x['precio_venta'];
             $model->cantidad = $cantidad;
             if ($model->save())
                 return json_encode(['code' => 1]);
@@ -283,6 +296,7 @@ class SiteController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $factura);
         return $this->render('ver', ['dataProvider' => $dataProvider, 'searchModel' => $searchModel, 'factura' => $factura, 'model' => $model]);
     }
+
     public function actionImprimir()
     {
         /*
@@ -295,7 +309,7 @@ class SiteController extends Controller
         try {
             $pdf = new Pdf([
                 'mode' => Pdf::MODE_CORE,
-                'filename' => $factura.'.pdf',
+                'filename' => $factura . '.pdf',
                 'orientation' => Pdf::ORIENT_PORTRAIT,
                 'destination' => Pdf::DEST_BROWSER,
                 'content' => $this->renderPartial('ver', ['dataProvider' => $dataProvider, 'searchModel' => $searchModel, 'factura' => $factura, 'model' => $model]),
@@ -365,6 +379,30 @@ class SiteController extends Controller
                 return json_encode(['code' => 0]);
         }
         return $this->renderAjax('_nuevo-articulo', ['model' => $model]);
+    }
+
+    public function actionNuevoUsuario()
+    {
+        /*
+         * Esta acción sirve para registrar un nuevo Usuraio, desde un formulario en la vista _NUEVO-ARTICULO
+         * tomando todos sus datos con el método POST y seteando el modelo para poder ser registrado
+         */
+        $model = new User();
+        if ($model->load(Yii::$app->request->post())) {
+            $model->password = password_hash($_POST['User']['password'], PASSWORD_ARGON2I);
+            try {
+                $model->authKey = md5(random_bytes(5));
+                $model->accessToken = password_hash(random_bytes(10), PASSWORD_DEFAULT);
+                $model->active = 1;
+                if ($model->save())
+                    return json_encode(['code' => 1]);
+                else
+                    return json_encode(['code' => 0]);
+            } catch (\Exception $e) {
+                return json_encode(['code' => 0]);
+            }
+        }
+        return $this->renderAjax('_nuevo-usuario', ['model' => $model]);
     }
 
     public function actionNuevoProveedor()

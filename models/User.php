@@ -9,26 +9,15 @@ use yii\web\IdentityInterface;
  * User model
  *
  * @property integer $id
- * @property string $identificacion
- * @property string $first_name
- * @property string $last_name
- * @property string $address
- * @property string $sex
- * @property string $country
- * @property string $birth_place
- * @property string $birth
  * @property string $username
  * @property string $password
- * @property string $email
  * @property string $authKey
  * @property string $accessToken
  * @property integer $active
- * @property string $timestamp
  */
 class User extends ActiveRecord implements IdentityInterface
 {
-    public $passNew;
-    public $passNew2;
+
     /**
      * {@inheritdoc}
      */
@@ -43,32 +32,9 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [
-                [
-                    'identificacion',
-                    'first_name',
-                    'last_name',
-                    'address',
-                    'sex',
-                    'birth_place',
-                    'country',
-                    'birth',
-                    ],'required', 'on' => 'create'
-            ],
             [['username'], 'string','max'=>255],
-            [['identificacion','username'], 'unique'],
             [['password'],'string', 'min' => 10],
             [['authKey','accessToken','password'], 'string','max'=>255],
-            [
-                [
-                    'passNew',
-                    'passNew2',
-                    'username',
-                ],'required', 'on' => 'changed'
-            ],
-            ['passNew2', 'compare','compareAttribute' => 'passNew', 'on' => 'changed'],
-            [['passNew'],'string', 'min' => 10, 'on' => 'changed'],
-            [['username'], 'unique', 'on' => 'changed'],
         ];
     }
 
@@ -81,17 +47,6 @@ class User extends ActiveRecord implements IdentityInterface
             'username' => 'Usuario',
             'password' => 'Contraseña',
             'active' => 'Estado',
-            'identificacion' => 'Identificación',
-            'last_name' => 'Apellidos',
-            'first_name' => 'Nombres',
-            'address' => 'Dirección',
-            'sex' => 'Sexo',
-            'birth' => 'Nacimiento',
-            'birth_place' => 'Lugar de nacimiento',
-            'country' => 'País',
-            'passOld' => 'Contraseña vieja',
-            'passNew' => 'Contraseña nueva',
-            'passNew2' => 'Repetir contraseña',
         ];
     }
 

@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Ingresar';
 ?>
-<div class="site-login">
+<div class="site-login text-center">
 
     <h1><?= 'Iniciar sesión' ?></h1>
 
@@ -20,8 +20,8 @@ $this->title = 'Ingresar';
         'id' => 'login-form',
         'layout' => 'horizontal',
         'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
+            //'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
+            //'labelOptions' => ['class' => 'col-lg-1 control-label'],
         ],
     ]); ?>
 

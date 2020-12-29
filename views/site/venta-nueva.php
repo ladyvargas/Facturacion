@@ -87,7 +87,7 @@ use yii\widgets\Pjax;
                 'template' => '{eliminar}',
                 'buttons' => [
                     'eliminar' => function ($url, $model) {//Este botón realiza la acción de quitar artículos del detalle de factura en proceso
-                        return HTML::button('Quitar', ArrayHelper::merge(['value'=>$url], ['class'=>'btn btn-info _quitar','id'=>$model['cod_articulo'],'factura'=>$model['cod_factura']],['title' => Yii::t('app', 'Eliminar Producto')]));
+                        return HTML::button('Quitar', ArrayHelper::merge(['value'=>$model['codigo']], ['class'=>'btn btn-info _quitar','id'=>$model['cod_articulo'],'factura'=>$model['cod_factura']],['title' => Yii::t('app', 'Eliminar Producto')]));
                     }
                 ],
             ],
@@ -129,7 +129,7 @@ use yii\widgets\Pjax;
     <?php Pjax::end(); ?>
 </div>
 <?php
-$urlQuitar=Yii::$app->getUrlManager()->createAbsoluteUrl('');
+$urlQuitar=Yii::$app->getUrlManager()->createAbsoluteUrl('site/eliminar?id=');
 $script = <<< JS
 $(document).ready(function() {
     $('body').on('click','._quitar', function(e){
