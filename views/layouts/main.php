@@ -46,7 +46,7 @@ AppAsset::register($this);
             ) : (
             [['label' => 'Inicio', 'url' => ['/site/index']],
                 ['label' => 'Facturas', 'url' => ['/site/facturas']],
-                Rol::getAdmin()?['label' => 'Clientes', 'url' => ['/site/clientes']]:'',
+                ['label' => 'Clientes', 'url' => ['/site/clientes']],
                 Rol::getAdmin()?['label' => 'Ciudades', 'url' => ['/site/ciudad']]:'',
                 Rol::getAdmin()?['label' => 'Proveedores', 'url' => ['/site/proveedor']]:'',
                 Rol::getAdmin()?['label' => 'Productos', 'url' => ['/site/articulos']]:'',
